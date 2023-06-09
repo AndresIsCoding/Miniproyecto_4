@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+//amogus
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
