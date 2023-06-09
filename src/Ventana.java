@@ -3,13 +3,17 @@ import javax.swing.*;
 public class Ventana extends JFrame
 {
     private JPanel panel1;
-    private JTable table1;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JTabbedPane tabbedPane2;
+    private JComboBox CBmarca;
+    private JTextField TFproducto;
+    private JButton agregarButton;
+    private JButton limpiarButton;
     private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTabbedPane tabbedPane3;
+    private JButton button1;
+    private JButton facturasButton;
+    private JButton totalDeVentasButton;
+    private JTable table1;
 
     public Ventana()
     {
