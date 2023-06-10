@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ArbolBinario {
     Nodo raiz;
@@ -6,20 +7,21 @@ public class ArbolBinario {
         raiz = null;
     }
 
-    public void insertar(int valor) {
-        raiz = insertarRecursivo(raiz, valor);
+    public void insertar(int valor,ArrayList<String> datos)
+    {
+        raiz = insertarRecursivo(raiz, valor,datos);
     }
 
-    private Nodo insertarRecursivo(Nodo nodo, int valor) {
+    private Nodo insertarRecursivo(Nodo nodo, int valor, ArrayList<String> datos) {
         if (nodo == null) {
-            nodo = new Nodo(valor);
+            nodo = new Nodo(valor,datos);
             return nodo;
         }
 
         if (valor < nodo.valor) {
-            nodo.izquierdo = insertarRecursivo(nodo.izquierdo, valor);
+            nodo.izquierdo = insertarRecursivo(nodo.izquierdo, valor,datos);
         } else if (valor > nodo.valor) {
-            nodo.derecho = insertarRecursivo(nodo.derecho, valor);
+            nodo.derecho = insertarRecursivo(nodo.derecho, valor,datos);
         }
 
         return nodo;
