@@ -20,8 +20,12 @@ public class Ventana extends JFrame
     private JTable table1;
     private JTextField TFidMarca;
     private JTextField TFidProducto;
+    private JTextField TFprecioDelProducto;
+    private JLabel LprecioDelProducto;
     private ArbolBinario ABproductos = new ArbolBinario(), ABmarcas = new ArbolBinario();
     private Map<String, Integer> DICmarcas = new HashMap<>();
+    private int precio;
+
 
     public Ventana()
     {
@@ -53,16 +57,22 @@ public class Ventana extends JFrame
                     {
                         ArrayList<Object> array = new ArrayList<>();
                         array.add(DICmarcas.get(CBmarca.getSelectedItem()));
+                        array.add(TFprecioDelProducto.getText());
                         array.add(TFdesProducto.getText());
                         ABproductos.insertar(k,array);
                         ABproductos.imprimirEnOrden();
+
+                        if(TFprecioDelProducto.getText().trim().equals(""))
+                    {
+                        TFprecioDelProducto.setText("0");
+                    }
                     } else if (TFdesProducto.getText().trim().equals(""))
                     {
                         JOptionPane.showMessageDialog(null, "Porfavor introduzca un nombre valido");
                     } else if (ABproductos.buscar(k))
                     {
                         JOptionPane.showMessageDialog(null, "La id indicada ya esta en uso");
-                    }else if (CBmarca.getItemCount() == 0)
+                    } else if (CBmarca.getItemCount() == 0)
                     {
                         JOptionPane.showMessageDialog(null, "Crea una marca primero");
                     }
