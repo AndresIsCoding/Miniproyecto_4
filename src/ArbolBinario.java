@@ -1,26 +1,31 @@
 import java.util.ArrayList;
 
-public class ArbolBinario {
+public class ArbolBinario
+{
     Nodo raiz;
 
     public ArbolBinario() {
         raiz = null;
     }
 
-    public void insertar(int valor,ArrayList<String> datos)
+    public void insertar(int valor,Object datos)
     {
         raiz = insertarRecursivo(raiz, valor,datos);
     }
 
-    private Nodo insertarRecursivo(Nodo nodo, int valor, ArrayList<String> datos) {
-        if (nodo == null) {
+    private Nodo insertarRecursivo(Nodo nodo, int valor, Object datos)
+    {
+        if (nodo == null)
+        {
             nodo = new Nodo(valor,datos);
             return nodo;
         }
 
-        if (valor < nodo.valor) {
+        if (valor < nodo.valor)
+        {
             nodo.izquierdo = insertarRecursivo(nodo.izquierdo, valor,datos);
-        } else if (valor > nodo.valor) {
+        } else if (valor > nodo.valor)
+        {
             nodo.derecho = insertarRecursivo(nodo.derecho, valor,datos);
         }
 
@@ -31,14 +36,18 @@ public class ArbolBinario {
         return buscarRecursivo(raiz, valor);
     }
 
-    private boolean buscarRecursivo(Nodo nodo, int valor) {
-        if (nodo == null) {
+    private boolean buscarRecursivo(Nodo nodo, int valor)
+    {
+        if (nodo == null)
+        {
             return false;
         }
 
-        if (valor == nodo.valor) {
+        if (valor == nodo.valor)
+        {
             return true;
-        } else if (valor < nodo.valor) {
+        } else if (valor < nodo.valor)
+        {
             return buscarRecursivo(nodo.izquierdo, valor);
         } else {
             return buscarRecursivo(nodo.derecho, valor);
@@ -49,14 +58,18 @@ public class ArbolBinario {
         raiz = editarRecursivo(raiz, valorAntiguo, valorNuevo);
     }
 
-    private Nodo editarRecursivo(Nodo nodo, int valorAntiguo, int valorNuevo) {
-        if (nodo == null) {
+    private Nodo editarRecursivo(Nodo nodo, int valorAntiguo, int valorNuevo)
+    {
+        if (nodo == null)
+        {
             return null;
         }
 
-        if (valorAntiguo == nodo.valor) {
+        if (valorAntiguo == nodo.valor)
+        {
             nodo.valor = valorNuevo;
-        } else if (valorAntiguo < nodo.valor) {
+        } else if (valorAntiguo < nodo.valor)
+        {
             nodo.izquierdo = editarRecursivo(nodo.izquierdo, valorAntiguo, valorNuevo);
         } else {
             nodo.derecho = editarRecursivo(nodo.derecho, valorAntiguo, valorNuevo);
@@ -69,18 +82,22 @@ public class ArbolBinario {
         raiz = eliminarRecursivo(raiz, valor);
     }
 
-    private Nodo eliminarRecursivo(Nodo nodo, int valor) {
-        if (nodo == null) {
+    private Nodo eliminarRecursivo(Nodo nodo, int valor)
+    {
+        if (nodo == null)
+        {
             return null;
         }
 
-        if (valor < nodo.valor) {
+        if (valor < nodo.valor)
+        {
             nodo.izquierdo = eliminarRecursivo(nodo.izquierdo, valor);
         } else if (valor > nodo.valor) {
             nodo.derecho = eliminarRecursivo(nodo.derecho, valor);
         } else {
             // Caso 1: Nodo sin hijos
-            if (nodo.izquierdo == null && nodo.derecho == null) {
+            if (nodo.izquierdo == null && nodo.derecho == null)
+            {
                 nodo = null;
             }
             // Caso 2: Nodo con un hijo
@@ -100,8 +117,10 @@ public class ArbolBinario {
         return nodo;
     }
 
-    private Nodo encontrarSucesor(Nodo nodo) {
-        while (nodo.izquierdo != null) {
+    private Nodo encontrarSucesor(Nodo nodo)
+    {
+        while (nodo.izquierdo != null)
+        {
             nodo = nodo.izquierdo;
         }
         return nodo;
@@ -111,8 +130,10 @@ public class ArbolBinario {
         imprimirEnOrdenRecursivo(raiz);
     }
 
-    private void imprimirEnOrdenRecursivo(Nodo nodo) {
-        if (nodo != null) {
+    private void imprimirEnOrdenRecursivo(Nodo nodo)
+    {
+        if (nodo != null)
+        {
             imprimirEnOrdenRecursivo(nodo.izquierdo);
             System.out.print(nodo.valor + " ");
             imprimirEnOrdenRecursivo(nodo.derecho);
@@ -123,8 +144,10 @@ public class ArbolBinario {
         return tamañoRecursivo(raiz);
     }
 
-    private int tamañoRecursivo(Nodo nodo) {
-        if (nodo == null) {
+    private int tamañoRecursivo(Nodo nodo)
+    {
+        if (nodo == null)
+        {
             return 0;
         }
 
