@@ -14,14 +14,26 @@ public class Ventana extends JFrame
     private JButton BagregarProducto,BlimpiarProducto, BlimpiarMarca, BagregarMarca;
     private JTextField TFnomMarca;
     private JTabbedPane tabbedPane3;
-    private JButton button1;
-    private JButton facturasButton;
-    private JButton totalDeVentasButton;
-    private JTable table1;
     private JTextField TFidMarca;
     private JTextField TFidProducto;
     private JTextField TFprecioDelProducto;
     private JLabel LprecioDelProducto;
+    private JButton button1;
+    private JButton facturasButton;
+    private JButton totalDeVentasButton;
+    private JTable table1;
+    private JTextField textField2;
+    private JButton limpiarButton;
+    private JButton crearButton;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
+    private JComboBox comboBox3;
+    private JComboBox comboBox4;
+    private JComboBox comboBox5;
+    private JTextField textField1;
+    private JSpinner spinner1;
+    private JButton limpiarButton1;
+    private JButton agregarButton;
     private ArbolBinario ABproductos = new ArbolBinario(), ABmarcas = new ArbolBinario();
     private Map<String, Integer> DICmarcas = new HashMap<>();
     private int precio;
@@ -41,28 +53,32 @@ public class Ventana extends JFrame
                 TFdesProducto.setText("");
             }
         });
-        //Agrega un producto
         BagregarProducto.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //comprueba si la id es un numero
                 try
                 {
-                    //comprueba si la id no esta en uso, si el nombre es valido y si hay una marca seleccionada
                     String n = TFidProducto.getText();
                     int k = Integer.valueOf(n);
+                    if (!(TFprecioDelProducto.getText().trim().equals(""))) {Integer.valueOf(TFprecioDelProducto.getText());}
                     if (!(ABproductos.buscar(k)) && !(TFdesProducto.getText().trim().equals("")) && (CBmarca.getItemCount() > 0))
                     {
                         ArrayList<Object> array = new ArrayList<>();
                         array.add(DICmarcas.get(CBmarca.getSelectedItem()));
-                        array.add(TFprecioDelProducto.getText());
+                        ArrayList<Object> array2 = (ArrayList<Object>) ABmarcas.getNodo(DICmarcas.get(CBmarca.getSelectedItem())).datos;
+                        ArrayList<Integer> xd = (ArrayList<Integer>) array2.get(1);
+                        xd.add(k);
+                        if(TFprecioDelProducto.getText().trim().equals(""))
+                        {
+                            array.add(0);
+                        }else
+                        {
+                            array.add(Integer.valueOf(TFprecioDelProducto.getText()));
+                        }
                         array.add(TFdesProducto.getText());
                         ABproductos.insertar(k,array);
-                        ABproductos.imprimirEnOrden();
-
-                        if(TFprecioDelProducto.getText().trim().equals(""))
                     {
                         TFprecioDelProducto.setText("0");
                     }
@@ -105,7 +121,11 @@ public class Ventana extends JFrame
                     int k = Integer.valueOf(n);
                     if (!(ABmarcas.buscar(k)) && !(TFnomMarca.getText().trim().equals("")))
                     {
-                        ABmarcas.insertar(k,TFnomMarca.getText());
+                        ArrayList<Object> array = new ArrayList<>();
+                        array.add(TFnomMarca.getText());
+                        ArrayList<Integer> productos = new ArrayList<>();
+                        array.add(productos);
+                        ABmarcas.insertar(k,array);
                         CBmarca.addItem(TFnomMarca.getText());
                         DICmarcas.put(TFnomMarca.getText(), k);
                     } else if (TFnomMarca.getText().trim().equals(""))

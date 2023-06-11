@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ArbolBinario
@@ -115,6 +116,27 @@ public class ArbolBinario
         }
 
         return nodo;
+    }
+    public Nodo getNodo(int valor) {
+        return getNodoRecursivo(raiz, valor);
+    }
+
+    private Nodo getNodoRecursivo(Nodo nodo, int valor)
+    {
+        if (nodo == null)
+        {
+            return null;
+        }
+
+        if (valor == nodo.valor)
+        {
+            return nodo;
+        } else if (valor < nodo.valor)
+        {
+            return getNodoRecursivo(nodo.izquierdo, valor);
+        } else {
+            return getNodoRecursivo(nodo.derecho, valor);
+        }
     }
 
     private Nodo encontrarSucesor(Nodo nodo)
