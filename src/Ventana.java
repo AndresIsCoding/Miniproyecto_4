@@ -146,33 +146,96 @@ public class Ventana extends JFrame
             }
         });
 
-        CBdias.addActionListener(new ActionListener() {
+        for (int i = 1; i <= 31 ; i++)
+        {
+            CBdias.addItem(i);
+        }
+
+        for (int i = 1; i <= 12 ; i++)
+        {
+            CBmeses.addItem(i);
+        }
+
+        for (int i = 1900; i <= 2030 ; i++)
+        {
+            CBano.addItem(i);
+        }
+        CBano.setSelectedItem(2023);
+        CBmeses.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
+                CBdias.removeAllItems();
+                int mes = (Integer) CBmeses.getSelectedItem();
+                if( mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)
+                {
+                    for (int i = 1; i <= 31 ; i++)
+                    {
+                        CBdias.addItem(i);
+                    }
+                } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
+                {
+                    for (int i = 1; i <= 30 ; i++)
+                    {
+                        CBdias.addItem(i);
+                    }
+                }else
+                {
+                    int year = (Integer) CBano.getSelectedItem();
+                    if (year % 100 == 0 && year % 400 == 0)
+                    {
+                        for (int i = 1; i <= 29 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    } else if (year % 4 == 0 && year % 100 != 0)
+                    {
+                        for (int i = 1; i <= 29 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    }else
+                    {
+                        for (int i = 1; i <= 28 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    }
+                }
             }
         });
-        for (int i = 1; i <32 ; i++)
+
+        CBano.addActionListener(new ActionListener()
         {
-            dias[i]=i+1;
-            CBdias.addItem(i);
-
-        }
-
-        for (int i = 1; i <13 ; i++)
-        {
-            meses[i]=i+1;
-            CBmeses.addItem(i);
-
-        }
-
-        for (int i = 1900; i <2024 ; i++)
-        {
-            años[i]=i+1;
-            CBano.addItem(i);
-
-        }
-
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                int mes = (Integer) CBmeses.getSelectedItem();
+                if (mes == 2)
+                {
+                    CBdias.removeAllItems();
+                    int year = (Integer) CBano.getSelectedItem();
+                    if (year % 100 == 0 && year % 400 == 0)
+                    {
+                        for (int i = 1; i <= 29 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    } else if (year % 4 == 0 && year % 100 != 0)
+                    {
+                        for (int i = 1; i <= 29 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    }else
+                    {
+                        for (int i = 1; i <= 28 ; i++)
+                        {
+                            CBdias.addItem(i);
+                        }
+                    }
+                }
+            }
+        });
     }
 }
