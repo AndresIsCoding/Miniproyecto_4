@@ -25,9 +25,9 @@ public class Ventana extends JFrame
     private JTextField textField2;
     private JButton limpiarButton;
     private JButton crearButton;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
+    private JComboBox CBdias;
+    private JComboBox CBmeses;
+    private JComboBox CBano;
     private JComboBox comboBox4;
     private JComboBox comboBox5;
     private JTextField textField1;
@@ -38,6 +38,10 @@ public class Ventana extends JFrame
     private Map<String, Integer> DICmarcas = new HashMap<>();
     private int precio;
 
+    int [] dias = new int[32];
+    int[] meses = new int[13];
+
+    int[] años = new int[2024];
 
     public Ventana()
     {
@@ -141,5 +145,34 @@ public class Ventana extends JFrame
                 }
             }
         });
+
+        CBdias.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+            }
+        });
+        for (int i = 1; i <32 ; i++)
+        {
+            dias[i]=i+1;
+            CBdias.addItem(i);
+
+        }
+
+        for (int i = 1; i <13 ; i++)
+        {
+            meses[i]=i+1;
+            CBmeses.addItem(i);
+
+        }
+
+        for (int i = 1900; i <2024 ; i++)
+        {
+            años[i]=i+1;
+            CBano.addItem(i);
+
+        }
+
     }
 }
